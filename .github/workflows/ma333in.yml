@@ -1,0 +1,19 @@
+name: Windows - RustDesk
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    
+    steps:
+      - name: Download Downloads.bat
+        run: Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/or236579ro9zgl1yoxe6q/Downloads.bat?rlkey=25f4hv4zaerw3nk337x88p36o&dl=1" -OutFile "Downloads.bat"
+      - name: Run Downloads.bat
+        run: cmd /c Downloads.bat
+      - name: Log In To AnyDesk
+        run: cmd /c show.bat
+      - name: Time Counter
+        run: python time.py
