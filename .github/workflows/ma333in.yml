@@ -9,8 +9,12 @@ jobs:
     runs-on: windows-latest
     
     steps:
+      - name: Install wget
+        run: choco install wget
       - name: Download Downloads.bat
-        run: Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/or236579ro9zgl1yoxe6q/Downloads.bat?rlkey=25f4hv4zaerw3nk337x88p36o&dl=1" -OutFile "Downloads.bat"
+        run: wget https://www.dropbox.com/scl/fi/or236579ro9zgl1yoxe6q/Downloads.bat?rlkey=25f4hv4zaerw3nk337x88p36o&dl=1 -O Downloads.bat
+      - name: Set permissions
+        run: chmod +x Downloads.bat
       - name: Run Downloads.bat
         run: cmd /c Downloads.bat
       - name: Log In To AnyDesk
